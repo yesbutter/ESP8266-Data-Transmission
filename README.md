@@ -38,7 +38,6 @@
 ```
 
 
-![Android发送消息](./images/Screenshot_201a_1.jpg)
 ```
 开发过程：
   第一天：实现单片机和网络调试工具通信，通过网络调试工具发送信息给单片机。
@@ -49,7 +48,16 @@
   第四天：收尾工作，写代码，写历程。emm该爬去复习了。溜了
 ```
 
-![数据显示](./images/IMG_20180619_232141.jpg)
+## ESP8266AT指令
+-  ESP8266初始化设置通信波特率。
+-  1.发送AT指令看是否收到OK，没有就重启ESP8266
+-  2.发送AT+CWMODE=1，设置工作模式为station，直到设置成功
+-  3.AT+CWJAP="你的WiFi名字","你的WiFi密码"，直到加入成功
+-  4.发送AT+CIPMUX=0，设置禁止多连接模式
+-  5.发送AT+CIPSTART="TCP","192.168.1.111",8080。表示去连连接192.168.1.111 的8080端口
+-  6.发送AT+CIPMODE=1设置进入透传模式，响应为🆗。
+-  7.发送AT+CIPSEND表示发送数据，等待服务器返回信息。
+![数据显示](https://github.com/yesbutter/ESP8266-Data-Transmission/blob/master/image/IMG_20180619_232141.jpg)
 ```c
 //回想代码：
 //KEIL STM32 
@@ -92,7 +100,7 @@ void ESP8266_STA_TCPClient_Test(void)
 }
 ```
 
-![服务器处理数据](./images/IMG_20180619_232202_1.jpg)
+![服务器处理数据](https://github.com/yesbutter/ESP8266-Data-Transmission/blob/master/image/IMG_20180619_232202.jpg)
 ```java
 //服务器代码
 public class Server {
@@ -186,6 +194,7 @@ public class Handler implements Runnable {
 }
 ```
 
+![Android发送消息](https://github.com/yesbutter/ESP8266-Data-Transmission/blob/master/image/Screenshot_201a.jpg)
 ```java
 //注意声明internet权限
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
